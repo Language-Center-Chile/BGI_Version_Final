@@ -16,8 +16,7 @@ Sitio web corporativo de **Land Advisors**, una firma chilena especializada en *
   - [Estructura del proyecto](#estructura-del-proyecto)
   - [Instalación y uso local](#instalación-y-uso-local)
     - [Requisitos](#requisitos)
-    - [Opción 1: Abrir directamente](#opción-1-abrir-directamente)
-    - [Opción 2: Servidor local (recomendado)](#opción-2-servidor-local-recomendado)
+    - [Ejecución con Servidor Local](#ejecución-con-servidor-local)
   - [Configuración del formulario (n8n)](#configuración-del-formulario-n8n)
     - [1. Crear el workflow en n8n](#1-crear-el-workflow-en-n8n)
     - [2. Configurar la URL en el proyecto](#2-configurar-la-url-en-el-proyecto)
@@ -89,7 +88,11 @@ El sitio está optimizado para ser **ligero, rápido y de fácil despliegue** en
 BLANCOGESTIONINMOBILIARIA/
 ├── index.html              # Página principal (HTML semántico)
 ├── style.css               # Estilos (CSS custom, responsive)
-├── script.js               # Lógica: scroll, menú, form, carrusel
+├── script.js               # Punto de entrada principal (Main ES6 Module Coordinator)
+├── js/                     # Carpeta de sub-scripts modulares
+│   ├── navigation.js       # Módulo para scroll, menú hamburguesa y header
+│   ├── contact-form.js     # Módulo para el formulario y validaciones
+│   └── carousel.js         # Módulo para el soporte accesible del carrusel
 ├── README.md               # Este archivo
 └── img/
     ├── hero.png            # Imagen principal del hero
@@ -107,32 +110,27 @@ BLANCOGESTIONINMOBILIARIA/
 ### Requisitos
 
 - Un navegador moderno (Chrome, Firefox, Edge, Safari).
-- Opcional: un servidor local (Live Server, `http-server`, Python, etc.) para evitar restricciones de CORS al abrir el archivo directamente.
+- **Importante**: Debido al uso de **módulos ES6** (`import`/`export`), es necesario correr el proyecto en un servidor local para evitar restricciones de CORS del navegador. No se admite la apertura directa haciendo doble clic en el archivo HTML (`file://`).
 
-### Opción 1: Abrir directamente
+### Ejecución con Servidor Local
 
-1. Descarga o clona el repositorio.
-2. Haz doble clic en `index.html`.
-3. El sitio se abrirá en tu navegador por defecto.
+Puedes levantar un servidor de desarrollo de forma muy rápida utilizando cualquiera de las siguientes opciones:
 
-### Opción 2: Servidor local (recomendado)
-
-Con **Python 3**:
-
-```bash
-cd BLANCOGESTIONINMOBILIARIA
-python -m http.server 8000
-```
-
-Luego abre [http://localhost:8000](http://localhost:8000) en tu navegador.
+Con **VS Code (Opción recomendada)**:
+1. Instala la extensión **Live Server**.
+2. Haz clic derecho sobre `index.html` → **Open with Live Server**.
 
 Con **npx (Node.js)**:
-
 ```bash
 npx serve .
 ```
 
-Con **VS Code**: instala la extensión _Live Server_ y haz clic derecho sobre `index.html` → _Open with Live Server_.
+Con **Python 3**:
+```bash
+cd BLANCOGESTIONINMOBILIARIA
+python -m http.server 8000
+```
+Luego abre [http://localhost:8000](http://localhost:8000) en tu navegador.
 
 ---
 
@@ -149,7 +147,8 @@ El formulario de contacto envía los datos a un **webhook de n8n** mediante una 
 
 ### 2. Configurar la URL en el proyecto
 
-Edita [script.js](script.js) y reemplaza la constante `N8N_WEBHOOK_URL`:
+Edita el archivo [js/contact-form.js](js/contact-form.js) y reemplaza la constante `N8N_WEBHOOK_URL`:
+
 
 ```js
 const N8N_WEBHOOK_URL = 'https://tu-n8n.example.com/webhook/ID-DEL-WEBHOOK';

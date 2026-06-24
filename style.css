@@ -1,7 +1,7 @@
 /* ============================================================
    BLANCO GESTIÓN INMOBILIARIA – style.css
    Paleta suave profesional (inmobiliaria)
-   Primario: #1F3A5C  | Crema cálido: #F4EFE6  | Bronce: #A88A4D
+   Primario: #1F3A5C  | Blanco: #FFFFFF  | Bronce: #A88A4D
    ============================================================ */
 
 /* ---------- RESET & BASE ---------- */
@@ -19,7 +19,7 @@ html {
 body {
   font-family: 'Montserrat', sans-serif;
   color: #3F4651;
-  background-color: #FBF8F2;
+  background-color: #FFFFFF;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -43,12 +43,12 @@ ul {
 /* ---------- TOKENS ---------- */
 :root {
   --primary:   #1F3A5C; /* navy suavizado — sigue siendo profundo pero menos agresivo */
-  --primary-hover: #032c9ba2;
+  --primary-hover: #0c2f81da;
   --white:     #FFFFFF;
-  --bg-light:  #F4EFE6; /* crema cálido para secciones suaves */
-  --bg-warm:   #EDE5D3; /* crema más profundo para variación */
-  --surface:   #FBF8F2; /* superficies/cards */
-  --border:    #E1D9C5; /* borde cálido */
+  --bg-light:  #FFFFFF; /* secciones suaves */
+  --bg-warm:   #FFFFFF; /* secciones suaves */
+  --surface:   #FFFFFF; /* superficies/cards */
+  --border:    #E5E5E5; /* borde neutro */
   --text-dark: #3F4651; /* charcoal suavizado */
   --text-mid:  #6E7378; /* gris cálido */
   --accent:    #A88A4D; /* bronce apagado — sofisticado, no dorado chillón */
